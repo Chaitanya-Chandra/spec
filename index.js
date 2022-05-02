@@ -6,6 +6,7 @@ var child_process = require("child_process");
 let user = "chaitu"
 let password = "@123Chaitu"
 
+
 const app = express()
 const port = 3000
 
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.get('/', function(req, res) {
-    res.sendFile('public/SpecLogin.html', {
+    res.sendFile('public/index.html', {
         root: __dirname
     })
 })
@@ -46,7 +47,7 @@ app.post('/', function(req, res) {
         })        
         
     } else {
-        res.sendFile('public/SpecLogin.html', {
+        res.sendFile('public/index.html', {
             root: __dirname
         })
     }
