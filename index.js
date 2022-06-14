@@ -25,8 +25,8 @@ app.get('/', function(req, res) {
 })
 
 app.post('/', function(req, res) {
-    console.log('success')
     if ((user == req.body.username) && (password == req.body.password)) {
+        console.log('success')
         const command_data = {};
         command_data.items = [];
         let cmd_hostname = child_process.execSync("hostname");
