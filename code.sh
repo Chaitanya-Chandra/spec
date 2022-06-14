@@ -6,4 +6,4 @@ yum install git -y
 git clone https://github.com/ChaitanyaChandra/spec.git
 cd spec/
 npm  install
-node index.js & 
+node index.js > node.logs 2>&1 &
