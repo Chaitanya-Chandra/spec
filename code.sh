@@ -9,6 +9,10 @@ npm  install
 node index.js > node.logs 2>&1 &
 ps -ef | grep "index.js" > run.log
 
+
+# cloud watch logs
+
+# install wget to download
 sudo yum install wget -y 
 
 # download rpm using wget
