@@ -1,13 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var child_process = require("child_process");
-const { Console } = require("console");
-var fs = require('fs');
-
-const myLogger = new Console({
-  stdout: fs.createWriteStream("node.access.log"),
-  stderr: fs.createWriteStream("node.error.log"),
-});
 
 let user = "chaitu"
 let password = "@123Chaitu"
