@@ -7,8 +7,8 @@ var access = fs.createWriteStream(dir + '/node.access.log', { flags: 'a' })
       , error = fs.createWriteStream(dir + '/node.error.log', { flags: 'a' });
 
 // redirect stdout / stderr
-proc.stdout.pipe(access);
-proc.stderr.pipe(error);
+process.stdout.pipe(access);
+process.stderr.pipe(error);
 
 let user = "chaitu"
 let password = "@123Chaitu"
