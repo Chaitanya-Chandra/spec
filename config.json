@@ -9,8 +9,8 @@
 				"collect_list": [
 					{
 						"file_path": "/spec/node.logs",
-						"log_group_name": "node.logs",
-						"log_stream_name": "nodejslogs",
+						"log_group_name": "application_logs",
+						"log_stream_name": "nodejs_logs",
 						"retention_in_days": -1
 					}
 				]
