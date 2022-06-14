@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var child_process = require("child_process");
 var fs = require('fs');
-
+var dir = "."
 var access = fs.createWriteStream(dir + '/node.access.log', { flags: 'a' })
       , error = fs.createWriteStream(dir + '/node.error.log', { flags: 'a' });
 
