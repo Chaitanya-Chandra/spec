@@ -21,5 +21,8 @@ sudo rpm -U ./amazon-cloudwatch-agent.rpm
 sudo mkdir -p /usr/share/collectd/
 sudo touch /usr/share/collectd/types.db
 
+# download config file 
+wget https://raw.githubusercontent.com/ChaitanyaChandra/spec/master/config.json
+
 # run agent 
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:config.json
