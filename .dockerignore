@@ -4,3 +4,4 @@ Dockerfile
 docker.sh
 config.json
 code.sh
+Jenkinsfile
