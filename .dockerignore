@@ -6,3 +6,4 @@ config.json
 code.sh
 Jenkinsfile
 LICENSE
+package-lock.json
