@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const child_process = require("child_process");
 
-const JWT_SECRET = 'sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk'
+const JWT_SECRET = 'ChaitanyaChandra<chay@outlook.in>'
 
 mongoose.connect('mongodb://localhost:27017/login-app-db', {
 	useNewUrlParser: true,
