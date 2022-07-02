@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 var child_process = require("child_process");
 
-const JWT_SECRET = 'sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk'
+const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
 mongoose.connect('mongodb://localhost:27017/login-app-db', {
 	useNewUrlParser: true,
@@ -56,7 +56,7 @@ app.post('/api/change-password', async (req, res) => {
 		res.json({ status: 'ok' })
 	} catch (error) {
 		console.log(error)
-		res.json({ status: 'error', error: ';))' })
+		res.json({ status: 'error', error: 'you need to sign in first!' })
 	}
 })
 
