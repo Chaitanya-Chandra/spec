@@ -23,7 +23,6 @@ app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({
     extended: false
 }))
-app.use(expLogger);
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(express.static('views/public'))
 app.use(bodyParser.json())
@@ -36,6 +35,7 @@ const logger = pino({
 const expLogger = expPino({
     logger: logger
 });
+app.use(expLogger);
 
 app.post('/api/change-password', async (req, res) => {
 	const { token, newpassword: plainTextPassword } = req.body
