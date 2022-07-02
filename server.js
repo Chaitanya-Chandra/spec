@@ -121,6 +121,50 @@ app.post('/api/register', async (req, res) => {
 	res.json({ status: 'ok' })
 })
 
+app.post('/spec', function(req, res) {
+	console.log('success')
+	const command_data = {};
+	command_data.items = [];
+	let cmd_hostname = child_process.execSync("hostname");
+	command_data.items[0] = {hostname : (cmd_hostname.toString())}
+	let cmd_uptime = child_process.execSync("uptime");
+	command_data.items[1] = {uptime : (cmd_uptime.toString())}
+	let cmd_lscpu = child_process.execSync("cat /proc/cpuinfo");
+	command_data.items[2] = {lscpu : cmd_lscpu.toString()}
+	let cmd_memoryInfo = child_process.execSync("cat /proc/meminfo");
+	command_data.items[3] = {meminfo : cmd_memoryInfo.toString()}
+	// .replace(/\n?\r\n/g, '<br />' )
+	//console.log(command_data)
+	res.render('spec', {
+		hostname: command_data.items[0].hostname,
+		uptime: command_data.items[1].uptime,
+		lscpu: command_data.items[2].lscpu,
+		meminfo: command_data.items[3].meminfo,
+		dev: "chaitanya chandra (chay@outlook.in)"
+	})
+})
+
+
+// error navigation
+app.use((error, req, res, next) => {
+    res.status(error.status || 500).send({
+        error: {
+            status: error.status || 500,
+            message: error.message || 'Internal Server Error',
+        },
+    });
+    res.sendFile('public/error.html', {
+        root: __dirname
+    })
+});
+
+app.use(function(req, res, next){
+    res.status(404);
+    res.sendFile('public/error.html', {
+        root: __dirname
+    })
+})
+
 app.listen(process.env.PORT || port, () => {
     console.log(`leads app listening at http://localhost:${port}`)
 })
