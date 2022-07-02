@@ -6,6 +6,8 @@ const User = require('./model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 var child_process = require("child_process");
+const pino = require('pino');
+const expPino = require('express-pino-logger');
 
 const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
@@ -21,10 +23,19 @@ app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({
     extended: false
 }))
-
+app.use(expLogger);
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(express.static('views/public'))
 app.use(bodyParser.json())
+
+const logger = pino({
+    level: 'info',
+    prettyPrint: false,
+    useLevelLabels: true
+});
+const expLogger = expPino({
+    logger: logger
+});
 
 app.post('/api/change-password', async (req, res) => {
 	const { token, newpassword: plainTextPassword } = req.body
@@ -53,6 +64,8 @@ app.post('/api/change-password', async (req, res) => {
 				$set: { password }
 			}
 		)
+		console.log(user.username)
+		// logger.info('Password Changed user ');
 		res.json({ status: 'ok' })
 	} catch (error) {
 		console.log(error)
