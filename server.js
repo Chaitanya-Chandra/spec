@@ -14,8 +14,11 @@ mongoose.connect('mongodb://localhost:27017/login-app-db', {
 	useCreateIndex: true
 })
 
+app.use(express.static('views/public'))
+const port = 8080
 const app = express()
-app.use('/', express.static(path.join(__dirname, 'static')))
+app.use('/', express.static(path.join(__dirname, 'public')))
+app.use(express.static('views/public'))
 app.use(bodyParser.json())
 
 app.post('/api/change-password', async (req, res) => {
@@ -114,6 +117,6 @@ app.post('/api/register', async (req, res) => {
 	res.json({ status: 'ok' })
 })
 
-app.listen(9999, () => {
-	console.log('Server up at 9999')
+app.listen(process.env.PORT || port, () => {
+    console.log(`leads app listening at http://localhost:${port}`)
 })
