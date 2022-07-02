@@ -78,7 +78,6 @@ app.post('/api/login', async (req, res) => {
 			},
 			JWT_SECRET
 		)
-		console.log('chaitu')
 		return res.json({ status: 'ok', data: token })
 	}
 

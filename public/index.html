@@ -57,9 +57,9 @@
                 console.log('Got the token: ', result.data)
                 localStorage.setItem('token', result.data)
                 alert('Success')
-                const result = await fetch('/spec', {
-                    method: 'POST'
-                })
+                // const result = await fetch('/spec', {
+                //     method: 'POST'
+                // })
             } else {
                 alert(result.error)
             }
