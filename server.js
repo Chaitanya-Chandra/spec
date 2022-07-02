@@ -5,9 +5,8 @@ const mongoose = require('mongoose')
 const User = require('./model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const child_process = require("child_process");
 
-const JWT_SECRET = 'ChaitanyaChandra<chay@outlook.in>'
+const JWT_SECRET = 'sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk'
 
 mongoose.connect('mongodb://localhost:27017/login-app-db', {
 	useNewUrlParser: true,
@@ -16,20 +15,8 @@ mongoose.connect('mongodb://localhost:27017/login-app-db', {
 })
 
 const app = express()
-app.use(express.static('public'))
-app.use(express.static('views/public'))
-
-app.set('view engine', 'pug')
-app.use(bodyParser.urlencoded({
-    extended: false
-}))
-
-
 app.use('/', express.static(path.join(__dirname, 'static')))
 app.use(bodyParser.json())
-
-
-const port = 8080
 
 app.post('/api/change-password', async (req, res) => {
 	const { token, newpassword: plainTextPassword } = req.body
@@ -127,25 +114,6 @@ app.post('/api/register', async (req, res) => {
 	res.json({ status: 'ok' })
 })
 
-app.use((error, req, res, next) => {
-    res.status(error.status || 500).send({
-        error: {
-            status: error.status || 500,
-            message: error.message || 'Internal Server Error',
-        },
-    });
-    res.sendFile('public/error.html', {
-        root: __dirname
-    })
-});
-
-app.use(function(req, res, next){
-    res.status(404);
-    res.sendFile('public/error.html', {
-        root: __dirname
-    })
-})
-
-app.listen(process.env.PORT || port, () => {
-    console.log(`leads app listening at http://localhost:${port}`)
+app.listen(9999, () => {
+	console.log('Server up at 9999')
 })
