@@ -97,7 +97,7 @@ app.post('/api/login', async (req, res) => {
             meminfo: command_data.items[3].meminfo,
             dev: "chaitanya chandra (chay@outlook.in)"
         })
-		// return res.json({ status: 'ok', data: token })
+		return res.json({ status: 'ok', data: token })
 	}
 
 	res.json({ status: 'error', error: 'Invalid username/password' })
