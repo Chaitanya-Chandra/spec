@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const User = require('./model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+var child_process = require("child_process");
 
 const JWT_SECRET = 'sdjkfh8923yhjdksbfma@#*(&@*!^#&@bhjb2qiuhesdbhjdsfg839ujkdhfjk'
 
@@ -16,6 +17,11 @@ mongoose.connect('mongodb://localhost:27017/login-app-db', {
 
 const port = 8080
 const app = express()
+app.set('view engine', 'pug')
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(express.static('views/public'))
 app.use(bodyParser.json())
@@ -64,7 +70,7 @@ app.post('/api/login', async (req, res) => {
 
 	if (await bcrypt.compare(password, user.password)) {
 		// the username, password combination is successful
-
+		
 		const token = jwt.sign(
 			{
 				id: user._id,
@@ -72,8 +78,26 @@ app.post('/api/login', async (req, res) => {
 			},
 			JWT_SECRET
 		)
-
-		return res.json({ status: 'ok', data: token })
+		const command_data = {};
+        command_data.items = [];
+        let cmd_hostname = child_process.execSync("hostname");
+        command_data.items[0] = {hostname : (cmd_hostname.toString())}
+        let cmd_uptime = child_process.execSync("uptime");
+        command_data.items[1] = {uptime : (cmd_uptime.toString())}
+        let cmd_lscpu = child_process.execSync("cat /proc/cpuinfo");
+        command_data.items[2] = {lscpu : cmd_lscpu.toString()}
+        let cmd_memoryInfo = child_process.execSync("cat /proc/meminfo");
+        command_data.items[3] = {meminfo : cmd_memoryInfo.toString()}
+        // .replace(/\n?\r\n/g, '<br />' )
+        //console.log(command_data)
+        res.render('spec', {
+            hostname: command_data.items[0].hostname,
+            uptime: command_data.items[1].uptime,
+            lscpu: command_data.items[2].lscpu,
+            meminfo: command_data.items[3].meminfo,
+            dev: "chaitanya chandra (chay@outlook.in)"
+        })
+		// return res.json({ status: 'ok', data: token })
 	}
 
 	res.json({ status: 'error', error: 'Invalid username/password' })
@@ -81,7 +105,6 @@ app.post('/api/login', async (req, res) => {
 
 app.post('/api/register', async (req, res) => {
 	const { username, password: plainTextPassword } = req.body
-	console.log("chay")
 	if (!username || typeof username !== 'string') {
 		return res.json({ status: 'error', error: 'Invalid username' })
 	}
