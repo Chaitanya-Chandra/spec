@@ -14,7 +14,6 @@ mongoose.connect('mongodb://localhost:27017/login-app-db', {
 	useCreateIndex: true
 })
 
-app.use(express.static('views/public'))
 const port = 8080
 const app = express()
 app.use('/', express.static(path.join(__dirname, 'public')))
