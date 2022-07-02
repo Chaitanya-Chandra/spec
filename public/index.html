@@ -10,7 +10,7 @@
 
 <div class="grid">
 
-    <form id="login" class="form login">
+    <form id="login" action="/spec" method="post"  class="form login">
 
 
         <div class="form__field">
@@ -57,9 +57,7 @@
                 console.log('Got the token: ', result.data)
                 localStorage.setItem('token', result.data)
                 alert('Success')
-                // const result = await fetch('/spec', {
-                //     method: 'POST'
-                // })
+                document.getElementById("login").submit();
             } else {
                 alert(result.error)
             }
