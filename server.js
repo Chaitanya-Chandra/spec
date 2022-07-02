@@ -81,7 +81,7 @@ app.post('/api/login', async (req, res) => {
 
 app.post('/api/register', async (req, res) => {
 	const { username, password: plainTextPassword } = req.body
-
+	console.log("chay")
 	if (!username || typeof username !== 'string') {
 		return res.json({ status: 'error', error: 'Invalid username' })
 	}
