@@ -4,7 +4,7 @@
   "description": "Capture Leads",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "DevStart": "nodemon index.js"
   },
   "repository": {
