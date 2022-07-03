@@ -142,7 +142,7 @@ app.post('/api/register', async (req, res) => {
 
 app.post('/spec', function(req, res) {
 	const { username, password } = req.body
-	console.log(`user:  ${username} accessed spec.`)
+	console.log(`user: ${username} accessed spec.`)
 	const command_data = {};
 	command_data.items = [];
 	let cmd_hostname = child_process.execSync("hostname");
