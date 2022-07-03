@@ -26,6 +26,18 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(express.static('views/public'))
 app.use(bodyParser.json())
 
+app.get('/signup', function(req, res) {
+    res.sendFile('public/signup.html', {
+        root: __dirname
+    })
+})
+
+app.get('/cp', function(req, res) {
+    res.sendFile('public/cp.html', {
+        root: __dirname
+    })
+})
+
 app.post('/api/change-password', async (req, res) => {
 	const { token, newpassword: plainTextPassword } = req.body
 
