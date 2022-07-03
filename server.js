@@ -26,6 +26,12 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use(express.static('views/public'))
 app.use(bodyParser.json())
 
+app.get('/spec', function(req, res) {
+    res.sendFile('public/index.html', {
+        root: __dirname
+    })
+})
+
 app.get('/signup', function(req, res) {
     res.sendFile('public/signup.html', {
         root: __dirname
@@ -82,7 +88,7 @@ app.post('/api/login', async (req, res) => {
 
 	if (await bcrypt.compare(password, user.password)) {
 		// the username, password combination is successful
-
+		console.log(`user: ${username} sussessfully logged in.`)
 		const token = jwt.sign(
 			{
 				id: user._id,
@@ -92,7 +98,7 @@ app.post('/api/login', async (req, res) => {
 		)
 		return res.json({ status: 'ok', data: token })
 	}
-
+	console.log(`user: ${username} wrong password.`)
 	res.json({ status: 'error', error: 'Invalid username/password' })
 })
 
@@ -120,11 +126,12 @@ app.post('/api/register', async (req, res) => {
 			username,
 			password
 		})
-		console.log(username)
+		console.log(`user: ${username} created.`)
 		// console.log('User created successfully: ', response)
 	} catch (error) {
 		if (error.code === 11000) {
 			// duplicate key
+			console.log(`user: ${username} Username already in use.`)
 			return res.json({ status: 'error', error: 'Username already in use' })
 		}
 		throw error
@@ -134,7 +141,8 @@ app.post('/api/register', async (req, res) => {
 })
 
 app.post('/spec', function(req, res) {
-	console.log('success')
+	const { username, password } = req.body
+	console.log(`user:  ${username} accessed spec.`)
 	const command_data = {};
 	command_data.items = [];
 	let cmd_hostname = child_process.execSync("hostname");
