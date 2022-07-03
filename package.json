@@ -4,8 +4,7 @@
   "description": "Capture Leads",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "DevStart": "nodemon index.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,6 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
-    "nodemon": "^2.0.15",
     "pug": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.5.1",
