@@ -9,7 +9,7 @@ var child_process = require("child_process");
 
 const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
-mongoose.connect('mongodb://localhost:27017/login-app-db', {
+mongoose.connect(process.env.MONGO_ENDPOINT, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useCreateIndex: true
