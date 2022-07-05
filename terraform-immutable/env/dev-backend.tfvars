@@ -1,3 +1,3 @@
-bucket = "terraform-b61"
-key    = "immutable/catalogue/dev/terraform.tfstate"
+bucket = "terraform-nonprod-state-chaitu-env"
+key    = "immutable/spec/dev/terraform.tfstate"
 region = "us-east-1"

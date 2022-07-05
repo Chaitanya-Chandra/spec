@@ -22,7 +22,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "terraform-nonprod-state-chaitu-env"
-    key    = "immutable/nodejs-internal/terraform.tfstate"
+    key    = "immutable/spec/ami/terraform.tfstate"
     region = "us-east-1"
   }
 }

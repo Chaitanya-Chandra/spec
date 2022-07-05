@@ -1,5 +1,5 @@
 module "app-module" {
-  source           = "git::https://github.com/raghudevopsb61/terraform-immutable-app-module.git"
+  source           = "github.com/ChaitanyaChandra/terraform-immutable-app-module.git"
   INSTANCE_COUNT   = var.INSTANCE_COUNT
   INSTANCE_TYPE    = var.INSTANCE_TYPE
   COMPONENT        = var.COMPONENT
