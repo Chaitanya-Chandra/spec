@@ -1,10 +1,19 @@
-module "catalogue-ami" {
+module "nodejs-internal-ami" {
   source      = "git::https://github.com/raghudevopsb61/terraform-ami.git"
-  COMPONENT   = "catalogue"
+  COMPONENT   = "spec"
   APP_VERSION = var.APP_VERSION
+  NEXUS_USERNAME = var.NEXUS_USERNAME
+  NEXUS_PASSWORD = var.NEXUS_PASSWORD
+  ENV = var.ENV
+  PROJECT = var.PROJECT
 }
 
 variable "APP_VERSION" {}
+variable "NEXUS_USERNAME" {}
+variable "NEXUS_PASSWORD" {}
+variable "ENV" {}
+variable "PROJECT" {}
+
 
 provider "aws" {
   region = "us-east-1"
@@ -12,8 +21,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "terraform-b61"
-    key    = "ami/catalogue/terraform.tfstate"
+    bucket = "terraform-nonprod-state-chaitu-env"
+    key    = "ami/nodejs-internal/terraform.tfstate"
     region = "us-east-1"
   }
 }
