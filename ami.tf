@@ -1,4 +1,4 @@
-module "nodejs-internal-ami" {
+module "spec-ami" {
   source      = "github.com/ChaitanyaChandra/terraform-ami"
   COMPONENT   = "spec"
   APP_VERSION = var.APP_VERSION
