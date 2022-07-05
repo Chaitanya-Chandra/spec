@@ -1,5 +1,5 @@
 module "nodejs-internal-ami" {
-  source      = "git::https://github.com/ChaitanyaChandra/terraform-ami.git"
+  source      = "github.com/ChaitanyaChandra/terraform-ami"
   COMPONENT   = "spec"
   APP_VERSION = var.APP_VERSION
   NEXUS_USERNAME = var.NEXUS_USERNAME
