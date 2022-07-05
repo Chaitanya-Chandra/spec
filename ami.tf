@@ -14,6 +14,9 @@ variable "NEXUS_PASSWORD" {}
 variable "ENV" {}
 variable "PROJECT" {}
 
+output "all" {
+  value = [var.APP_VERSION, var.NEXUS_USERNAME, var.NEXUS_PASSWORD, var.ENV, var.PROJECT]
+}
 
 provider "aws" {
   region = "us-east-1"
