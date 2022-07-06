@@ -11,6 +11,8 @@ const JWT_SECRET = 'ChaitanyaChandra<Chay@outlook.in>'
 
 var mongoURL = process.env.MONGO_ENDPOINT || 'mongodb://localhost:27017/login-app-db';
 
+var APP_VERSION = process.env.APP_VERSION || 'main'
+
 mongoose.connect(mongoURL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
@@ -162,7 +164,8 @@ app.post('/spec', function(req, res) {
 		uptime: command_data.items[1].uptime,
 		lscpu: command_data.items[2].lscpu,
 		meminfo: command_data.items[3].meminfo,
-		dev: "chaitanya chandra (chay@outlook.in)"
+		dev: "chaitanya chandra (chay@outlook.in)",
+		app_version: APP_VERSION
 	})
 })
 
