@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var child_process = require("child_process");
 
+
 let user = "chaitu"
 let password = "@123Chaitu"
 
@@ -25,7 +26,6 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
     if ((user == req.body.username) && (password == req.body.password)) {
-        console.log('success')
         const command_data = {};
         command_data.items = [];
         let cmd_hostname = child_process.execSync("hostname");
@@ -37,7 +37,7 @@ app.post('/', function(req, res) {
         let cmd_memoryInfo = child_process.execSync("cat /proc/meminfo");
         command_data.items[3] = {meminfo : cmd_memoryInfo.toString()}
         // .replace(/\n?\r\n/g, '<br />' )
-        //console.log(command_data)
+        console.log(command_data)
         res.render('spec', {
             hostname: command_data.items[0].hostname,
             uptime: command_data.items[1].uptime,
@@ -47,7 +47,6 @@ app.post('/', function(req, res) {
         })        
         
     } else {
-        console.log('error')
         res.sendFile('public/index.html', {
             root: __dirname
         })

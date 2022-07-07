@@ -10,21 +10,21 @@
 
 <div class="grid">
 
-    <form id="login" action="/spec" method="post"  class="form login">
+    <form action="/" method="POST" class="form login">
 
 
         <div class="form__field">
             <label for="login__username"><svg class="icon">
                 <use xlink:href="#icon-user"></use>
             </svg><span class="hidden">Username</span></label>
-            <input id="username" autocomplete="username" id="username" type="text" name="username" class="form__input" placeholder="Username" required>
+            <input autocomplete="username" id="login__username" type="text" name="username" class="form__input" placeholder="Username" required>
         </div>
 
         <div class="form__field">
             <label for="login__password"><svg class="icon">
                 <use xlink:href="#icon-lock"></use>
             </svg><span class="hidden">Password</span></label>
-            <input id="password" type="password" name="password" class="form__input" placeholder="Password" required>
+            <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
         </div>
 
         <div class="form__field">
@@ -32,41 +32,6 @@
         </div>
 
     </form>
-    <script>
-        const form = document.getElementById('login')
-        form.addEventListener('submit', login)
-
-        async function login(event) {
-            event.preventDefault()
-            const username = document.getElementById('username').value
-            const password = document.getElementById('password').value
-
-            const result = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username,
-                    password
-                })
-            }).then((res) => res.json())
-
-            if (result.status === 'ok') {
-                // everythign went fine
-                console.log('Got the token: ', result.data)
-                localStorage.setItem('token', result.data)
-                alert('Success')
-                document.getElementById("login").submit();
-            } else {
-                alert(result.error)
-            }
-        }
-    </script>
-
-    <p class="text--center">Not a member? <a href="/signup"> Signup now </a> <svg class="icon">
-        <use xlink:href="sighn up"></use>
-    </svg></p>
 
 </div>
 
