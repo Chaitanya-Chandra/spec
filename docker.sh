@@ -1,3 +1,3 @@
 docker rm ServerOne -f
-docker build -t chaitu .
-docker run -itd -p 8080:3000 --name=ServerOne -h ServerOne chaitu
+docker build -t chaituchowdary/spec .
+docker run -itd -p 80:8080 --name=ServerOne -h ServerOne chaituchowdary/spec
