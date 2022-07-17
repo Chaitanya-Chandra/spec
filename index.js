@@ -20,8 +20,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/health', (req, res) => {
     var stat = {
-        app: 'OK',
-        mongo: mongoConnected
+        app: 'OK'
     };
     res.json(stat);
 });
