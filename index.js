@@ -18,6 +18,14 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 
+app.get('/health', (req, res) => {
+    var stat = {
+        app: 'OK',
+        mongo: mongoConnected
+    };
+    res.json(stat);
+});
+
 app.get('/', function(req, res) {
     res.sendFile('public/index.html', {
         root: __dirname
